@@ -2,10 +2,10 @@
 使用者資訊:
 
 使用者 | 密碼 | Compass / Python / URI 連線字串
-* roy | ***** | mongodb://roy:12345@192.168.100.3:27017/youtube?authSource=youtube
-* jj | ***** | mongodb://jj:12345@192.168.100.3:27017/youtube?authSource=youtube
-* yuye | ***** | mongodb://yuye:12345@192.168.100.3:27017/youtube?authSource=youtube
-* liang | ***** | mongodb://liang:12345@192.168.100.3:27017/youtube?authSource=youtube
+* roy | ***** | mongodb://roy:*****@192.168.100.*:27017/youtube?authSource=youtube
+* jj | ***** | mongodb://jj:*****@192.168.100.*:27017/youtube?authSource=youtube
+* yuye | ***** | mongodb://yuye:*****@192.168.100.*:27017/youtube?authSource=youtube
+* liang | ***** | mongodb://liang:*****@192.168.100.*:27017/youtube?authSource=youtube
 
 各位可以去下載mongodb compass。
 
