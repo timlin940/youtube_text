@@ -1,4 +1,7 @@
 專題前置處理:抓影片字幕檔
+
+檔案內容:字幕檔(無時間戳記一份 + 有時間戳記一份)
+
 使用者資訊:
 
 使用者 | 密碼 | Compass / Python / URI 連線字串
@@ -9,7 +12,7 @@
 
 各位可以去下載mongodb compass。
 
-進入後新增connection，把url換成以上對應的連接字串就可以存取資料庫了(其實密碼都一樣，我只是想分開用)
+進入後新增connection，把url換成以上對應的連接字串就可以存取資料庫了。
 
 然後在vscode下載mongodb的套件 ( "MongoDB for VS Code" )，接著輸入下方程式碼應該就沒問題了(記得要下載yt-dlp)。
 
