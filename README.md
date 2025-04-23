@@ -6,7 +6,7 @@
 
 使用者 | 密碼 | Compass / Python / URI 連線字串
 * roy | ***** | mongodb://roy:*****@192.168.100.*:27017/youtube?authSource=youtube
-* jj | ***** | mongodb://jj:*****@192.168.100.*:27017/youtube?authSource=youtube
+* james | ***** | mongodb://james:*****@192.168.100.*:27017/youtube?authSource=youtube
 * yuye | ***** | mongodb://yuye:*****@192.168.100.*:27017/youtube?authSource=youtube
 * liang | ***** | mongodb://liang:*****@192.168.100.*:27017/youtube?authSource=youtube
 
