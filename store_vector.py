@@ -9,8 +9,8 @@ from sentence_transformers import SentenceTransformer
 print("🔐 請登入 MySQL 資料庫")
 host = '127.0.0.1'
 port = 3306
-user = 'root'
-password = 'Ninomae0520'
+user = '自己的user'
+password = '自己的密碼'
 db_name = 'youtube_data'
 
 try:
