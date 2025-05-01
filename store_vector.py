@@ -5,6 +5,8 @@ from chromadb import PersistentClient
 from getpass import getpass
 from sentence_transformers import SentenceTransformer
 
+#這隻程式碼在將sql中的summary拿出來做embadding並存進向量資料庫ChromaDB當中
+
 # Step 1: 連接 MySQL
 print("🔐 請登入 MySQL 資料庫")
 host = '127.0.0.1'
