@@ -11,8 +11,8 @@ from transformers import pipeline
 from configparser import ConfigParser
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
-# 該程式碼做到抓影片下來到Mysql，同時會先用distilbart-cnn-6-6來獲得summary(還不確定是吃字幕檔嗎)，再給gemini來獲得主題分類。目前缺陷:主題分類有點爛嗎(有些影片同時有不同分類，正常，但是
-# 不知道準不準)，還沒做向量化
+# 該程式碼做到抓影片、存進mysql資料庫、用小模型生成summary、用Gemini判斷該影片屬於哪種分類
+# 我擅自分類成Computer Science, Law, Mathematics, Physics, Chemistry, Biology, Earth Science, History, Geography, Sports, Daily Life
 
 # 你的 Gemini API 金鑰
 config = ConfigParser()
