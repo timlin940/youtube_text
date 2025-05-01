@@ -2,6 +2,8 @@ from chromadb import PersistentClient
 from chromadb.config import Settings
 from sentence_transformers import SentenceTransformer
 
+######### 這裡在測試embadding的效果 ###########
+
 # 初始化 Chroma 與嵌入模型
 client = PersistentClient(path="D:/Chroma", settings=Settings(allow_reset=True))
 collection = client.get_collection(name="youtube_data")
