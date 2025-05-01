@@ -13,7 +13,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 ##################### 該程式碼做到抓影片、存進mysql資料庫、用小模型生成summary、用Gemini判斷該影片屬於哪種分類 ###########################
 ##################### 我擅自分類成Computer Science, Law, Mathematics, Physics, Chemistry, Biology, Earth Science, History, Geography, Sports, Daily Life ###########################
-
+### 後續應該要新增影片時間長度 
 # 你的 Gemini API 金鑰
 config = ConfigParser()
 config.read("config.ini")
