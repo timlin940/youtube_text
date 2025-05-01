@@ -13,7 +13,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 ##################### 該程式碼做到抓影片、存進mysql資料庫、用小模型生成summary、用Gemini判斷該影片屬於哪種分類 ###########################
 ##################### 我擅自分類成Computer Science, Law, Mathematics, Physics, Chemistry, Biology, Earth Science, History, Geography, Sports, Daily Life ###########################
-### 後續應該要新增影片時間長度 
+
 # 你的 Gemini API 金鑰
 config = ConfigParser()
 config.read("config.ini")
@@ -25,6 +25,14 @@ llm = ChatGoogleGenerativeAI(
 
 # 小型 Summary Pipeline (本地生成)
 summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-6-6")
+
+def time_str_to_str(tstr):
+    parts = [float(p) for p in tstr.split(":")]
+    if len(parts) == 3:
+        return f"{int(parts[0])}:{int(parts[1]):02}:{int(parts[2]):02}"
+    elif len(parts) == 2:
+        return f"{int(parts[0])}:{int(parts[1]):02}"
+    return "00:00"
 
 def login_mysql():
     print("🔐 請登入 MySQL 資料庫")
@@ -161,6 +169,9 @@ def download_and_save_to_mysql(video_url, title, description, conn, language="en
         os.remove(vtt_filename)
 
         subtitle_text = "\n".join(output_lines)
+        # 影片內嵌網址（用於網頁播放）
+        video_id = video_url.split("v=")[-1].split("&")[0]  # 解析 YouTube ID
+        embed_url = f"https://www.youtube.com/embed/{video_id}"
 
         # 1️⃣ 用本地 Mini Summarizer 產生 summary
         summary = generate_summary_local(subtitle_text)
@@ -175,10 +186,17 @@ def download_and_save_to_mysql(video_url, title, description, conn, language="en
 
         cursor = conn.cursor()
 
+        # 🔢 推算影片時間（從最後一筆字幕的 end）
+        if structured_subtitles:
+            last_end = structured_subtitles[-1]["end"]
+            duration_str = time_str_to_str(last_end)
+        else:
+            duration_str = ""
+            
         # 3️⃣ 寫入 videos
         sql = """
-        INSERT INTO videos (url, title, description, summary, transcription, transcription_with_time, created_at)
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO videos (url, title, description, summary, transcription, transcription_with_time, duration_str, embed_url, created_at)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         cursor.execute(sql, (
             video_url,
@@ -187,6 +205,8 @@ def download_and_save_to_mysql(video_url, title, description, conn, language="en
             summary,
             subtitle_text,
             json.dumps(structured_subtitles, ensure_ascii=False),
+            duration_str,
+            embed_url,
             datetime.utcnow()
         ))
         conn.commit()
@@ -204,6 +224,7 @@ def download_and_save_to_mysql(video_url, title, description, conn, language="en
         conn.commit()
 
         print(f"✅ 成功存影片：{title}，主題：{', '.join(assigned_categories)}")
+        print(f"▶️ 可嵌入網址：{embed_url}")
 
     except subprocess.CalledProcessError as e:
         print("❌ 執行 yt-dlp 失敗：", e)
@@ -212,7 +233,7 @@ if __name__ == "__main__":
     conn = login_mysql()
 
     keyword = input("🔍 請輸入你想搜尋的英文主題：")
-    videos = search_youtube_with_subtitles(keyword, max_results=5)
+    videos = search_youtube_with_subtitles(keyword, max_results=10)
 
     for i, video in enumerate(videos, 1):
         print(f"\n🎬 {i}. {video['title']}")
