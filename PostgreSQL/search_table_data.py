@@ -2,11 +2,11 @@ import psycopg2
 
 # 資料庫連線參數（請替換成你的實際值）
 conn = psycopg2.connect(
-    host="dpg-d0d4h8q4d50c73eeu1ng-a.oregon-postgres.render.com",
+    host="",
     port=5432,
     database="youtube_data_qkc5",
     user="teammate",
-    password="cGu5jdTwy4JLriDMylTlzNmW4S9jJHNF"
+    password=""
 )
 
 cursor = conn.cursor()
