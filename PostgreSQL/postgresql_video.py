@@ -34,7 +34,7 @@ def time_str_to_str(tstr):
 
 def login_postgresql():
     print(" 請登入 PostgreSQL 資料庫")
-    host = 'dpg-d0d4h8q4d50c73eeu1ng-a.oregon-postgres.render.com'#這邊是看外部連線的連結名稱，那一長串要從中間找出我們要的!
+    host = ''#這邊是看外部連線的連結名稱，那一長串要從中間找出我們要的!
     port = 5432
     user = 'teammate'
     password = 'cGu5jdTwy4JLriDMylTlzNmW4S9jJHNF'
