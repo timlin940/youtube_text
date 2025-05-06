@@ -5,7 +5,7 @@ conn = psycopg2.connect(
     host='',#這邊是看外部連線的連結名稱，那一長串要從中間找出我們要的!
     database="youtube_data_qkc5",
     user="teammate",
-    password='cGu5jdTwy4JLriDMylTlzNmW4S9jJHNF',
+    password='',
     port=5432
 )
 print("成功")
