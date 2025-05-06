@@ -2,7 +2,7 @@ import psycopg2
 
 # 改成你自己的 Render 資料庫資訊
 conn = psycopg2.connect(
-    host='dpg-d0d4h8q4d50c73eeu1ng-a.oregon-postgres.render.com',#這邊是看外部連線的連結名稱，那一長串要從中間找出我們要的!
+    host='',#這邊是看外部連線的連結名稱，那一長串要從中間找出我們要的!
     database="youtube_data_qkc5",
     user="teammate",
     password='cGu5jdTwy4JLriDMylTlzNmW4S9jJHNF',
