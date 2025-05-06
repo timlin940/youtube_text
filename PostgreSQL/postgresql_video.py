@@ -37,7 +37,7 @@ def login_postgresql():
     host = ''#這邊是看外部連線的連結名稱，那一長串要從中間找出我們要的!
     port = 5432
     user = 'teammate'
-    password = 'cGu5jdTwy4JLriDMylTlzNmW4S9jJHNF'
+    password = ''
     db_name = 'youtube_data_qkc5'
     try:
         conn = psycopg2.connect(
